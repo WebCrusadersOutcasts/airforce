@@ -1,42 +1,53 @@
-body{
+body {
     background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-.container{
-    height: 600px;
-    width: 100vw;
-    border: 2px solid black;
+.container {
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-around;
+}
+
+.box {
+    height: 400px;
+    width: 300px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
-.box{
-    height: 448px;
-    width: 334px;
-    border: 2px solid black;
-    margin: 78px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px blue;
-    text-align: center;
-    transition: transform 0.3s ease;
+.image {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin: 0 auto; /* Center the image horizontally */
+    background-color: lightgray;
 }
 
-.image{
-    border: 2px solid black;
-    border-radius: 8px;
-    height: 200px;
-    width: 200px;
-    margin-top: 30px;
-    margin-left: 70px;
-    background-color: lightgray;    
+.box h1 {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: left;
+    margin-left: 20px;
+    text-decoration: none 
 }
-
-.box h1{
-    margin-top: 20%;
-}
-
 
 .box:hover {
-    transform: translateY(-5px); /* Add a hover effect */
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.container a{
+    text-decoration: none;
 }
