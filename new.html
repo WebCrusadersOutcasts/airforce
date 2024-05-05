@@ -2,11 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>For Report</title>
-    <link rel="stylesheet" href="new.css">
+    <title>Triple Sized Divisions</title>
+    <style>
+        /* Styling for the top division */
+        .top {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Flexbox setup for vertical stacking */
+        .middle, .bottom {
+            flex-direction: column;
+            padding: 10px;
+        }
+
+        /* Tripling the height of the boxes */
+        .box {
+            background-color: #e6e6e6;
+            margin: 10px 0; /* Vertical spacing */
+            padding: 20px;
+            text-align: center;
+            height: 450px; /* Triple the height */
+        }
+
+        /* Dropdown styling */
+        select {
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-    <!-- Top division with wide dropdown menu -->
+    <!-- Top division with a dropdown menu -->
     <div class="top">
         <label for="dropdown">Select an option:</label>
         <select id="dropdown" name="options">
@@ -20,11 +51,11 @@
     <div class="middle">
         <div class="box">
             <h2>Left Middle Division</h2>
-            <p>Content for the left division.</p>
+            <p>More space for content.</p>
         </div>
         <div class="box">
             <h2>Right Middle Division</h2>
-            <p>Content for the right division.</p>
+            <p>Additional content space.</p>
         </div>
     </div>
 
@@ -32,11 +63,11 @@
     <div class="bottom">
         <div class="box">
             <h2>Left Bottom Division</h2>
-            <p>Content for the left bottom division.</p>
+            <p>Extra content space.</p>
         </div>
         <div class="box">
             <h2>Right Bottom Division</h2>
-            <p>Content for the right bottom division.</p>
+            <p>More room for content.</p>
         </div>
     </div>
 </body>
