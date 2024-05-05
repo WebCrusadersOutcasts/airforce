@@ -2,72 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Three Divisions Layout</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Force Bidar</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Styling for the top division */
-        .top {
-            background-color: #f2f2f2;
-            padding: 10px;
-            text-align: center;
-        }
-
-        /* Flexbox setup for vertical stacking */
-        .section {
-            padding: 10px;
-            margin: 10px 0; /* Add space between sections */
-        }
-
-        /* Styling for the boxes with increased height */
-        .box {
-            background-color: #e6e6e6;
+        /* Style for the container */
+        .container {
+            display: flex;
+            justify-content: space-around; /* Space between boxes */
             padding: 20px;
-            text-align: center;
-            height: 450px; /* Tripled height for larger boxes */
         }
 
-        /* Dropdown styling */
-        select {
-            font-size: 16px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: white;
+        /* Style for the boxes */
+        .box {
+            text-align: center; /* Center-align the text */
+            padding: 20px; /* Padding around the content */
+            border: 2px solid #ccc; /* Border for each box */
+            border-radius: 10px; /* Rounded corners */
+            transition: all 0.3s; /* Smooth transition on hover */
+        }
+
+        .box:hover {
+            border-color: #000; /* Change border color on hover */
+        }
+
+        /* Style for circular images */
+        .image {
+            width: 100px; /* Fixed width for images */
+            height: 100px; /* Fixed height for images */
+            overflow: hidden; /* Hide overflow if image is larger */
+            border-radius: 50%; /* Make the images circular */
+            border: 2px solid #ccc; /* Border around the circle */
+            display: inline-block; /* Keep it inline */
+        }
+
+        .image img {
+            width: 100%; /* Fit image within the circle */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Style for the headings */
+        h1 {
+            font-size: 1.5rem; /* Adjust heading size */
+            margin-top: 10px; /* Margin above the heading */
         }
     </style>
 </head>
 <body>
-    <!-- Top division with a dropdown menu -->
-    <div class="top">
-        <label for="dropdown">Select an option:</label>
-        <select id="dropdown" name="options">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-        </select>
-    </div>
+    <h1 style=" color: #333; text-align: center; font-size: 3rem;">Air Force Bidar</h1>
+    <div class="container">
+        <!-- Circular image for "Upload CSV" -->
+        <a href="https://images.app.goo.gl/6qRD93MA5AUjokmx9" id="container-1" class="box">
+            <div class="image">
+                <img src="image/csv.jpg" alt="Upload CSV"> <!-- Logo for Upload CSV -->
+            </div>
+            <h1>Upload CSV</h1>
+        </a>
 
-    <!-- First section -->
-    <div class="section">
-        <div class="box">
-            <h2>First Division</h2>
-            <p>This is the first large division.</p>
-        </div>
-    </div>
+        <!-- Circular image for "Visualisation" -->
+        <a href="/visualisation.html" id="container-2" class="box">
+            <div class="image">
+                <img src="image/data.jpg" alt="Visualisation"> <!-- Logo for Visualisation -->
+            </div>
+            <h1>Visualisation</h1>
+        </a>
 
-    <!-- Second section -->
-    <div class="section">
-        <div class="box">
-            <h2>Second Division</h2>
-            <p>This is the second large division.</p>
-        </div>
-    </div>
-
-    <!-- Third section -->
-    <div class="section">
-        <div class="box">
-            <h2>Third Division</h2>
-            <p>This is the third large division.</p>
-        </div>
+        <!-- Circular image for "Final Reports" -->
+        <a href="/report.html" id="container-3" class="box">
+            <div class="image">
+                <img src="image/report.png" alt="Final Reports"> <!-- Logo for Final Reports -->
+            </div>
+            <h1>Final Reports</h1>
+        </a>
     </div>
 </body>
 </html>
