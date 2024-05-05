@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Triple Sized Divisions</title>
+    <title>Three Divisions Layout</title>
     <style>
         /* Styling for the top division */
         .top {
@@ -12,18 +12,17 @@
         }
 
         /* Flexbox setup for vertical stacking */
-        .middle, .bottom {
-            flex-direction: column;
+        .section {
             padding: 10px;
+            margin: 10px 0; /* Add space between sections */
         }
 
-        /* Tripling the height of the boxes */
+        /* Styling for the boxes with increased height */
         .box {
             background-color: #e6e6e6;
-            margin: 10px 0; /* Vertical spacing */
             padding: 20px;
             text-align: center;
-            height: 450px; /* Triple the height */
+            height: 450px; /* Tripled height for larger boxes */
         }
 
         /* Dropdown styling */
@@ -47,27 +46,27 @@
         </select>
     </div>
 
-    <!-- Middle divisions with increased height -->
-    <div class="middle">
+    <!-- First section -->
+    <div class="section">
         <div class="box">
-            <h2>Left Middle Division</h2>
-            <p>More space for content.</p>
-        </div>
-        <div class="box">
-            <h2>Right Middle Division</h2>
-            <p>Additional content space.</p>
+            <h2>First Division</h2>
+            <p>This is the first large division.</p>
         </div>
     </div>
 
-    <!-- Bottom divisions with increased height -->
-    <div class="bottom">
+    <!-- Second section -->
+    <div class="section">
         <div class="box">
-            <h2>Left Bottom Division</h2>
-            <p>Extra content space.</p>
+            <h2>Second Division</h2>
+            <p>This is the second large division.</p>
         </div>
+    </div>
+
+    <!-- Third section -->
+    <div class="section">
         <div class="box">
-            <h2>Right Bottom Division</h2>
-            <p>More room for content.</p>
+            <h2>Third Division</h2>
+            <p>This is the third large division.</p>
         </div>
     </div>
 </body>
