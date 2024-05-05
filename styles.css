@@ -53,3 +53,9 @@ body {
     text-decoration: none;
 }
     
+
+
+.image img{
+    height: auto;
+    width: auto;
+}
