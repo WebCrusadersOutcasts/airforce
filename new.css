@@ -1,0 +1,37 @@
+ /* Basic styling for the divisions */
+ .top {
+    background-color: #f2f2f2; /* Light gray */
+    padding: 10px;
+    text-align: center;
+    font-size: xx-large;
+}
+
+.middle, .bottom {
+    display: flex; /* Use flexbox to align side by side */
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.box {
+    background-color: #e6e6e6; /* Slightly darker gray */
+    flex: 1;
+    margin: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Increase the height of the bottom divisions */
+.middle .box, .bottom .box {
+    height: 280px; /* Increased height */
+}
+
+/* Styling for the dropdown to increase its width */
+select {
+    font-size: 24px; /* Increase the size of dropdown text */
+    padding: 10px;  /* Additional padding for easier clicking */
+    border-radius: 5px; /* Rounded corners for aesthetics */
+    border: 1px solid #ccc; /* Border for definition */
+    background-color: white; /* Background color of dropdown */
+    cursor: pointer; /* Change cursor to pointer when hovering */
+    width: 800px; /* Increase the width of the dropdown to four times the default */
+}
