@@ -1,61 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dropdown from Backend</title>
-<script src="/visualisation.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aircraft Data Visualization</title>
+    <!-- Include Plotly.js for chart rendering -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
+    <h1>Aircraft Data Visualization</h1>
 
-<h2>Select Options</h2>
+    <form id="dataForm">
+        <label for="dateInput">Date:</label>
+        <input type="date" id="dateInput" name="dateInput" required><br><br>
 
-<form>
-  <label for="date">Date:</label>
-  <select id="date" name="date">
-    <!-- Date options will be populated dynamically from the backend -->
-  </select>
-  <br><br>
-  
-  <label for="aircraft">Aircraft Number:</label>
-  <select id="aircraft" name="aircraft">
-    <!-- Aircraft options will be populated dynamically from the backend -->
-  </select>
-  <br><br>
-  
-  <label for="sortie">Sortie:</label>
-  <select id="sortie" name="sortie">
-    <!-- Sortie options will be populated dynamically from the backend -->
-  </select>
-  <br><br>
-  
-  <input type="submit" value="Submit">
-</form>
+        <label for="aircraftDropdown">Aircraft Number:</label>
+        <select id="aircraftDropdown" name="aircraftDropdown">
+            <!-- Aircraft number options will be populated dynamically -->
+        </select><br><br>
 
-<script>
-// Assuming you have data coming from the backend in JSON format
-// Sample data structure
-const backendData = {
-  dates: ["2024-05-01", "2024-05-02", "2024-05-03"],
-  aircrafts: ["A123", "B456", "C789"],
-  sorties: ["S1", "S2", "S3"]
-};
+        <label for="sortieDropdown">Sortie Number:</label>
+        <select id="sortieDropdown" name="sortieDropdown">
+            <!-- Sortie number options will be populated dynamically -->
+        </select><br><br>
 
-// Function to populate dropdown options
-function populateDropdown(dropdownId, options) {
-  const dropdown = document.getElementById(dropdownId);
-  options.forEach(option => {
-    const optionElement = document.createElement("option");
-    optionElement.text = option;
-    dropdown.add(optionElement);
-  });
-}
+        <button type="button" onclick="fetchData()">Fetch Data</button>
+    </form>
 
-// Populate dropdowns with data from the backend
-populateDropdown("date", backendData.dates);
-populateDropdown("aircraft", backendData.aircrafts);
-populateDropdown("sortie", backendData.sorties);
-</script>
+    <div id="chartContainer">
+        <!-- Chart will be rendered here -->
+    </div>
 
+    <script>
+        // Function to fetch aircraft numbers from backend and populate dropdown
+        async function populateAircraftDropdown() {
+            const response = await fetch('http://127.0.0.1:5000/aircraft-numbers');
+            const aircraftNumbers = await response.json();
+
+            const aircraftDropdown = document.getElementById('aircraftDropdown');
+            aircraftDropdown.innerHTML = '';
+            aircraftNumbers.forEach(number => {
+                const option = document.createElement('option');
+                option.value = number;
+                option.text = number;
+                aircraftDropdown.appendChild(option);
+            });
+        }
+
+        // Function to fetch sortie numbers from backend and populate dropdown
+        async function populateSortieDropdown() {
+            const response = await fetch('http://127.0.0.1:5000/sortie-numbers');
+            const sortieNumbers = await response.json();
+
+            const sortieDropdown = document.getElementById('sortieDropdown');
+            sortieDropdown.innerHTML = '';
+            sortieNumbers.forEach(number => {
+                const option = document.createElement('option');
+                option.value = number;
+                option.text = number;
+                sortieDropdown.appendChild(option);
+            });
+        }
+
+        // Function to fetch data based on selected inputs
+        async function fetchData() {
+            const date = document.getElementById('dateInput').value;
+            const aircraftNo = document.getElementById('aircraftDropdown').value;
+            const sortieNo = document.getElementById('sortieDropdown').value;
+
+            const requestData = {
+                date: date,
+                aircraft_no: aircraftNo,
+                sortie_numbers: sortieNo
+            };
+
+            const response = await fetch('http://127.0.0.1:5000/check-tgt-events', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            });
+
+            const result = await response.json();
+
+            // Render chart using Plotly.js based on the response data
+            const chartContainer = document.getElementById('chartContainer');
+            chartContainer.innerHTML = '';
+
+            const chartData = [{
+                x: result.xValues,
+                y: result.yValues,
+                type: 'scatter',
+                mode: 'lines',
+                name: 'TGT'
+            }];
+
+            const layout = {
+                title: 'TGT Violation Detection',
+                xaxis: { title: 'Time' },
+                yaxis: { title: 'TGT' }
+            };
+
+            Plotly.newPlot('chartContainer', chartData, layout);
+        }
+
+        // Populate dropdowns when the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            await populateAircraftDropdown();
+            await populateSortieDropdown();
+        });
+    </script>
 </body>
 </html>

@@ -1,74 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Triple Sized Divisions</title>
-    <style>
-        /* Styling for the top division */
-        .top {
-            background-color: #f2f2f2;
-            padding: 10px;
-            text-align: center;
-        }
-
-        /* Flexbox setup for vertical stacking */
-        .middle, .bottom {
-            flex-direction: column;
-            padding: 10px;
-        }
-
-        /* Tripling the height of the boxes */
-        .box {
-            background-color: #e6e6e6;
-            margin: 10px 0; /* Vertical spacing */
-            padding: 20px;
-            text-align: center;
-            height: 450px; /* Triple the height */
-        }
-
-        /* Dropdown styling */
-        select {
-            font-size: 16px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: white;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropdown from Backend</title>
+<script src="/visualisation.js"></script>
 </head>
 <body>
-    <!-- Top division with a dropdown menu -->
-    <div class="top">
-        <label for="dropdown">Select an option:</label>
-        <select id="dropdown" name="options">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-        </select>
-    </div>
 
-    <!-- Middle divisions with increased height -->
-    <div class="middle">
-        <div class="box">
-            <h2>Left Middle Division</h2>
-            <p>More space for content.</p>
-        </div>
-        <div class="box">
-            <h2>Right Middle Division</h2>
-            <p>Additional content space.</p>
-        </div>
-    </div>
+<h2>Select Options</h2>
 
-    <!-- Bottom divisions with increased height -->
-    <div class="bottom">
-        <div class="box">
-            <h2>Left Bottom Division</h2>
-            <p>Extra content space.</p>
-        </div>
-        <div class="box">
-            <h2>Right Bottom Division</h2>
-            <p>More room for content.</p>
-        </div>
-    </div>
+<form>
+  <label for="date">Date:</label>
+  <select id="date" name="date">
+    <!-- Date options will be populated dynamically from the backend -->
+  </select>
+  <br><br>
+  
+  <label for="aircraft">Aircraft Number:</label>
+  <select id="aircraft" name="aircraft">
+    <!-- Aircraft options will be populated dynamically from the backend -->
+  </select>
+  <br><br>
+  
+  <label for="sortie">Sortie:</label>
+  <select id="sortie" name="sortie">
+    <!-- Sortie options will be populated dynamically from the backend -->
+  </select>
+  <br><br>
+  
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+// Assuming you have data coming from the backend in JSON format
+// Sample data structure
+const backendData = {
+  dates: ["2024-05-01", "2024-05-02", "2024-05-03"],
+  aircrafts: ["A123", "B456", "C789"],
+  sorties: ["S1", "S2", "S3"]
+};
+
+// Function to populate dropdown options
+function populateDropdown(dropdownId, options) {
+  const dropdown = document.getElementById(dropdownId);
+  options.forEach(option => {
+    const optionElement = document.createElement("option");
+    optionElement.text = option;
+    dropdown.add(optionElement);
+  });
+}
+
+// Populate dropdowns with data from the backend
+populateDropdown("date", backendData.dates);
+populateDropdown("aircraft", backendData.aircrafts);
+populateDropdown("sortie", backendData.sorties);
+</script>
+
 </body>
 </html>
